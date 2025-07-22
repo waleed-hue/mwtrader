@@ -186,6 +186,72 @@
             letter-spacing: 1px;
         }
 
+        /* Trading Signal Generator Section */
+        .signal-generator {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .signal-generator h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .signal-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .signal-input input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .signal-input button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-gradient);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signal-input button:hover {
+            background: var(--secondary-gradient);
+            transform: translateY(-2px);
+        }
+
+        #signalOutput {
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            min-height: 100px;
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
         /* 3D Glass Cards */
         .features-grid {
             display: grid;
@@ -501,6 +567,10 @@
                 width: 25px;
                 height: 25px;
             }
+
+            .signal-input {
+                flex-direction: column;
+            }
         }
 
         /* Scroll Animations */
@@ -526,14 +596,6 @@
                 transform: perspective(1000px) rotateX(10deg) rotateY(5deg) translateY(0);
             }
         }
-
-        /* Glass Morphism Enhancement */
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
     </style>
 </head>
 <body>
@@ -542,30 +604,52 @@
     <div class="floating-element"></div>
     <div class="floating-element"></div>
 
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="https://chat.whatsapp.com/IiAmbx0BwMeENwMwk77ih9" class="logo" target="_blank">MW Trader</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#signals">Signals</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <!-- Main Content -->
     <main>
         <section class="hero-section">
-            <a href="https://chat.whatsapp.com/IiAmbx0BwMeENwMwk77ih9" class="logo" target="_blank">MW Trader</a>
-            <p class="subtitle">Professional Trading Solutions for the Modern Market</p>
+            <h1>Professional Trading Solutions</h1>
+            <p class="subtitle">Advanced tools and real-time signals for modern traders</p>
             
             <div class="cta-buttons">
-                <a href="https://chat.whatsapp.com/IiAmbx0BwMeENwMwk77ih9" class="btn btn-primary" target="_blank">Start Trading</a>
-                <a href="https://www.tradingview.com/chart/?symbol=CRYPTO%3ABTCUSD" class="btn btn-secondary" target="_blank">Learn More</a>
+                <a href="https://chat.whatsapp.com/IiAmbx0BwMeENwMwk77ih9" class="btn btn-primary" target="_blank">Join Our Community</a>
+                <a href="#signals" class="btn btn-secondary">Get Free Signals</a>
             </div>
         </section>
 
-        <div class="features-grid">
-            <div class="feature-card glass-panel">
+        <!-- Trading Signal Generator Section -->
+        <section class="signal-generator" id="signals">
+            <h3>Cryptocurrency Signal Generator</h3>
+            <div class="signal-input">
+                <input type="text" id="coinInput" placeholder="Enter cryptocurrency (e.g. Bitcoin)" />
+                <button onclick="getSignal()">Generate Signal</button>
+            </div>
+            <div id="signalOutput">Your trading signal will appear here...</div>
+        </section>
+
+        <div class="features-grid" id="features">
+            <div class="feature-card">
                 <h3>Advanced Analytics</h3>
                 <p>Leverage cutting-edge market analysis tools and real-time data visualization to make informed trading decisions with confidence and precision.</p>
             </div>
             
-            <div class="feature-card glass-panel">
+            <div class="feature-card">
                 <h3>Secure Platform</h3>
                 <p>Trade with peace of mind using our bank-level security protocols, encrypted transactions, and multi-factor authentication systems.</p>
             </div>
             
-            <div class="feature-card glass-panel">
+            <div class="feature-card">
                 <h3>Expert Support</h3>
                 <p>Access 24/7 professional guidance from our team of certified trading experts and market specialists dedicated to your success.</p>
             </div>
@@ -573,7 +657,7 @@
     </main>
 
     <!-- Social Media Footer -->
-    <footer class="social-footer">
+    <footer class="social-footer" id="contact">
         <h3 class="social-title">Connect With Us</h3>
         <div class="social-icons">
             <a href="https://www.instagram.com/mw_trader2?igsh=b2R6djdnNjVtdXd5&utm_source=qr" class="social-icon instagram" title="Instagram" target="_blank">
@@ -606,5 +690,69 @@
             © 2025 MW Trader. All rights reserved. | Follow us for the latest trading insights and market updates.
         </div>
     </footer>
+
+    <script>
+        // Trading Signal Generator Function
+        async function getSignal() {
+            const coin = document.getElementById('coinInput').value.trim();
+            const output = document.getElementById('signalOutput');
+            
+            if (!coin) {
+                output.innerHTML = "<span style='color: #ff6b6b'>Please enter a cryptocurrency name.</span>";
+                return;
+            }
+
+            output.innerHTML = "<div style='display: flex; justify-content: center; align-items: center; height: 100px;'><div class='floating-element' style='width: 30px; height: 30px; animation: float 2s ease-in-out infinite;'></div></div><p style='text-align: center; margin-top: 10px;'>Analyzing market data for " + coin + "...</p>";
+
+            // Simulate API call with delay
+            setTimeout(() => {
+                const signals = [
+                    { type: "STRONG BUY", color: "#4CAF50", emoji: "🚀", confidence: "High (85%)" },
+                    { type: "BUY", color: "#8BC34A", emoji: "📈", confidence: "Medium (65%)" },
+                    { type: "HOLD", color: "#FFC107", emoji: "🛑", confidence: "Neutral (50%)" },
+                    { type: "SELL", color: "#FF9800", emoji: "⚠️", confidence: "Medium (60%)" },
+                    { type: "STRONG SELL", color: "#F44336", emoji: "🔻", confidence: "High (80%)" }
+                ];
+                
+                const randomSignal = signals[Math.floor(Math.random() * signals.length)];
+                const currentPrice = (Math.random() * 10000 + 1000).toFixed(2);
+                const change24h = (Math.random() * 10 - 5).toFixed(2);
+                const changePercent = (Math.random() * 15 - 7.5).toFixed(2);
+                
+                output.innerHTML = `
+                    <div style="background: rgba(0, 0, 0, 0.2); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: ${randomSignal.color}">${coin} Trading Signal</h4>
+                        <div style="font-size: 2.5rem; text-align: center; margin: 1rem 0; color: ${randomSignal.color}">
+                            ${randomSignal.type} ${randomSignal.emoji}
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <small>Current Price</small>
+                                <p>$${currentPrice}</p>
+                            </div>
+                            <div>
+                                <small>24h Change</small>
+                                <p style="color: ${change24h >= 0 ? '#4CAF50' : '#F44336'}">${change24h >= 0 ? '+' : ''}${change24h} (${changePercent}%)</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <small>Confidence Level</small>
+                            <p>${randomSignal.confidence}</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); text-align: center;">
+                        Last updated: ${new Date().toLocaleString()}
+                    </p>
+                `;
+            }, 2000);
+        }
+
+        // Make signal generator work on Enter key
+        document.getElementById('coinInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                getSignal();
+            }
+        });
+    </script>
 </body>
 </html>
